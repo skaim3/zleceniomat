@@ -11,9 +11,9 @@
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
     <form method="post" id="edit-form">
-        <input type="text" placeholder="Product Name">
-        <input type="text" placeholder="Product Code">
-        <input type="text" placeholder="Quantity">
+        <p th:if="${info}" th:text="${info}" id="error"></p>
+        <input type="text" placeholder="Assignment Name" th:field="*{additionModel.name}" id="name">
+        <input type="text" placeholder="Assignment Description" th:field="*{additionModel.description}" id="desc">
         <input type="submit" value="Add">
     </form>
 </div>

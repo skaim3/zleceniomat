@@ -33,6 +33,21 @@ public class HibernateAssignmentDAOImpl implements IAssignmentDAO {
     }
 
     @Override
+    public Assignment getAssignmentByName(String name){
+        Session session = this.sessionFactory.openSession();
+        Query<Assignment> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Assignment WHERE name = :name");
+        query.setParameter("name", name);
+        Assignment assignment = null;
+        try {
+            assignment = query.getSingleResult();
+        } catch (NoResultException e){
+            System.out.println("Assignment not found!");
+        }
+        session.close();
+        return assignment;
+    }
+
+    @Override
     public void updateAssignment(Assignment assignment){
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
@@ -55,5 +70,23 @@ public class HibernateAssignmentDAOImpl implements IAssignmentDAO {
         List<Assignment> assignments = query.getResultList();
         session.close();
         return assignments;
+    }
+
+    @Override
+    public boolean addAssignment(Assignment assignment){
+        Session session = this.sessionFactory.openSession();
+        Transaction tx = null;
+        try{
+            tx = session.beginTransaction();
+            session.save(assignment);
+            tx.commit();
+            return true;
+        } catch (Exception e){
+            if(tx != null)
+                tx.rollback();
+        } finally {
+            session.close();
+        }
+        return false;
     }
 }

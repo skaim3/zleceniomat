@@ -10,13 +10,13 @@
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
-<th:block th:each="product : ${products}">
+<th:block th:each="assignment : ${assignments}">
     <div class="product-box">
-        <div th:text="'Name: ' + ${product.name}" class="name-box"></div>
-        <div th:text="'Product code: ' + ${product.code}" class="code-box"></div>
+        <div th:text="'Name: ' + ${assignment.name}" class="name-box"></div>
+        <div th:text="'Description: ' + ${assignment.description}" class="description-box"></div>
         <div class="product-data-box">
-            <div th:text="'Quantity: ' + ${product.quantity}"></div>
-            <a th:if="${role == 'ADMIN'}" th:href="@{/edit/{id}(id=${product.id})}" class="edit-button"></a>
+            <div th:text="'Owner: ' + ${assignment.ownerId}"></div>
+            <a th:if="${role == 'CUSTOMER'}" th:href="@{/edit/{id}(id=${assignment.id})}" class="edit-button"></a>
         </div>
     </div>
 </th:block>

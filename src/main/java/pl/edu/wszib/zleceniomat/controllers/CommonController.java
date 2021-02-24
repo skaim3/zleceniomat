@@ -24,19 +24,22 @@ public class CommonController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model){
+        model.addAttribute("assignments", this.assignmentService.getAllAssignments());
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
+        model.addAttribute("owner",this.sessionObject.getLoggedUser().getId());
+        if(!this.sessionObject.isLogged()) {
+            return "redirect:/login";
+        }
+        else
         return "main";
     }
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String contact(Model model) {
         model.addAttribute("isLogged", this.sessionObject.isLogged());
+        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
         return "contact";
     }
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-    public String addProduct(Model model){
-        model.addAttribute("isLogged", this.sessionObject.isLogged());
-        return "addProduct";
-    }
+
 }

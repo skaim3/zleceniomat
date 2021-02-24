@@ -9,4 +9,5 @@ public interface IAssignmentRepository {
     Assignment getAssignmentByOwnerId(int ownerId);
     void updateAssignment(Assignment assignment);
     Assignment getAssignmentById(int id);
+    boolean addAssignment(Assignment assignment);
 }

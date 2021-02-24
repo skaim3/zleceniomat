@@ -1,16 +1,22 @@
 package pl.edu.wszib.zleceniomat.services.impl;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.edu.wszib.zleceniomat.dao.IAssignmentDAO;
 import pl.edu.wszib.zleceniomat.model.Assignment;
+import pl.edu.wszib.zleceniomat.model.User;
+import pl.edu.wszib.zleceniomat.model.view.AdditionModel;
 import pl.edu.wszib.zleceniomat.services.IAssignmentService;
+import pl.edu.wszib.zleceniomat.session.SessionObject;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class AssignmentServiceImpl implements IAssignmentService {
+
+    @Resource
+    SessionObject sessionObject;
 
     @Autowired
     IAssignmentDAO assignmentDAO;
@@ -29,4 +35,15 @@ public class AssignmentServiceImpl implements IAssignmentService {
 
     @Override
     public List<Assignment> getAllAssignments(){ return this.assignmentDAO.getAllAssignments(); }
+
+    @Override
+    public boolean addAssignment(AdditionModel additionModel){
+        if(this.assignmentDAO.getAssignmentByName(additionModel.getName()) != null) {
+            return false;
+        }
+
+        Assignment newAssignment = new Assignment(0, additionModel.getName(), additionModel.getDescription(), this.sessionObject.getLoggedUser().getId());
+
+        return this.assignmentDAO.addAssignment(newAssignment);
+    }
 }

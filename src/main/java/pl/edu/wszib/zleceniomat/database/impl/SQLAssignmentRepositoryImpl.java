@@ -62,6 +62,45 @@ public class SQLAssignmentRepositoryImpl implements IAssignmentRepository {
     }
 
     @Override
+    public boolean addAssignment(Assignment assignment){
+        if(isAssignmentInDB(assignment.getName())) {
+            return false;
+        }
+
+        String sql = "INSERT INTO tassignment (name, description, ownerId) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, assignment.getName());
+            preparedStatement.setString(2, assignment.getDescription());
+            preparedStatement.setInt(3, assignment.getOwnerId());
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean isAssignmentInDB(String name) {
+        String sql = "SELECT * FROM tassignment WHERE name = ?";
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
     public void updateAssignment(Assignment assignment) {
         String sql = "UPDATE tassignment SET name = ?, description = ?, ownerId = ? WHERE id = ?";
         try {

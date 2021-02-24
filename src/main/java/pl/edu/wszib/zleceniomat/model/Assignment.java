@@ -59,4 +59,9 @@ public class Assignment {
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
+
+    @Override
+    public String toString() {
+        return "Assignment{" + "id=" + id + ", name='" + name + '\'' + ", description='" + description + '\'' + ", owner=" + ownerId + '}';
+    }
 }
