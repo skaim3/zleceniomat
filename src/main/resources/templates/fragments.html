@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zleceniomat</title>
+</head>
+<body>
+<div id="menu" th:fragment="menu">
+    <a href="/main" class="menu-button">Assignments</a>
+    <a href="/contact" class="menu-button">Contact</a>
+    <a th:if="${role == 'ADMIN'}" href="/addProduct" class="menu-button">Add Product</a>
+    <a href="/logout" class="menu-button" th:if="${isLogged}">Log out</a>
+    <a href="/login" class="menu-button" th:if="${!isLogged}">Log in</a>
+</div>
+
+<img src="/logo.png" id="logo" th:fragment="logo">
+</body>
+</html>

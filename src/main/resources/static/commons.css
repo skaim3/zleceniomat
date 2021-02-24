@@ -1,0 +1,27 @@
+#logo {
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+}
+
+#menu {
+    margin: 40px 0 0 0;
+    text-align: center;
+    border-top: 2px solid whitesmoke;
+}
+
+.menu-button {
+    font-size: 26px;
+    text-decoration: none;
+    color: whitesmoke;
+    margin: 5px 25px;
+    transition: color 0.5s;
+}
+
+.menu-button:hover {
+    color: gold;
+}
+body{
+    background-color: #36393f;
+    color: whitesmoke;
+}
