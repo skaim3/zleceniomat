@@ -10,4 +10,5 @@ public interface IAssignmentDAO {
     List<Assignment> getAllAssignments();
     boolean addAssignment(Assignment assignment);
     Assignment getAssignmentByName(String name);
+    List<Assignment> getOwnedAssignments(int ownerId);
 }

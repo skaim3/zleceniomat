@@ -11,9 +11,8 @@
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
     <form method="post" id="edit-form">
-        <input type="text" th:field="*{assignment.name}">
-        <input type="text" th:field="*{assignment.description}">
-        <input type="text" th:field="*{assignment.ownerId}">
+        <input id="name" type="text" th:field="*{assignment.name}">
+        <textarea rows="20" cols="100" id="description" th:text="*{assignment.description}" th:field="*{assignment.description}"></textarea>
         <input type="submit" value="Edit">
     </form>
 </div>

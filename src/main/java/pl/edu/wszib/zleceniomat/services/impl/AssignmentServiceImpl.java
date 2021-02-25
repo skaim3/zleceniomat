@@ -25,6 +25,9 @@ public class AssignmentServiceImpl implements IAssignmentService {
     public Assignment getAssignmentById(int id){ return this.assignmentDAO.getAssignmentById(id);}
 
     @Override
+    public List<Assignment> getOwnedAssignments(int ownerId){ return this.assignmentDAO.getOwnedAssignments(ownerId); }
+
+    @Override
     public void updateAssignment(Assignment assignment){
         Assignment assignmentFromDB = this.assignmentDAO.getAssignmentById(assignment.getId());
         assignmentFromDB.setName(assignment.getName());

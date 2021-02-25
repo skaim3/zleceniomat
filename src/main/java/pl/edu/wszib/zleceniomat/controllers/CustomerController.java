@@ -57,7 +57,7 @@ public class CustomerController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String edit(@ModelAttribute Assignment assignment) {
-        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.ADMIN) {
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.CUSTOMER) {
             return "redirect:/login";
         }
         this.assignmentService.updateAssignment(assignment);

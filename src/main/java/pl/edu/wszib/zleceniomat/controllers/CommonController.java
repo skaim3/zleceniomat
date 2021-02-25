@@ -25,9 +25,10 @@ public class CommonController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(Model model){
         model.addAttribute("assignments", this.assignmentService.getAllAssignments());
+        model.addAttribute("ownedAssignments", this.assignmentService.getOwnedAssignments(this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getId() : 0));
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
-        model.addAttribute("owner",this.sessionObject.getLoggedUser().getId());
+        model.addAttribute("owner",this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getId() : null);
         if(!this.sessionObject.isLogged()) {
             return "redirect:/login";
         }

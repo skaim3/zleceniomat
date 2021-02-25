@@ -10,4 +10,5 @@ public interface IAssignmentService {
     void updateAssignment(Assignment assignment);
     List<Assignment> getAllAssignments();
     boolean addAssignment(AdditionModel additionModel);
+    List<Assignment> getOwnedAssignments(int ownerId);
 }

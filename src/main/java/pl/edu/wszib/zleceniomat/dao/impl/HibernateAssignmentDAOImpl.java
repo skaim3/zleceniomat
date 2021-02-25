@@ -48,6 +48,16 @@ public class HibernateAssignmentDAOImpl implements IAssignmentDAO {
     }
 
     @Override
+    public List<Assignment> getOwnedAssignments(int ownerId){
+        Session session = this.sessionFactory.openSession();
+        Query<Assignment> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Assignment WHERE ownerId = :owner");
+        query.setParameter("owner", ownerId);
+        List<Assignment> assignments = query.getResultList();
+        session.close();
+        return assignments;
+    }
+
+    @Override
     public void updateAssignment(Assignment assignment){
         Session session = this.sessionFactory.openSession();
         Transaction tx = null;
