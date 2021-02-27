@@ -14,6 +14,7 @@ import java.util.List;
 
 @Repository
 public class HibernateAssignmentDAOImpl implements IAssignmentDAO {
+
     @Autowired
     SessionFactory sessionFactory;
 
@@ -77,6 +78,16 @@ public class HibernateAssignmentDAOImpl implements IAssignmentDAO {
     public List<Assignment> getAllAssignments(){
         Session session = this.sessionFactory.openSession();
         Query<Assignment> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Assignment");
+        List<Assignment> assignments = query.getResultList();
+        session.close();
+        return assignments;
+    }
+
+    @Override
+    public List<Assignment> getAllAvailableAssignments(String availability){
+        Session session = this.sessionFactory.openSession();
+        Query<Assignment> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Assignment WHERE availability = :availability");
+        query.setParameter("availability", availability);
         List<Assignment> assignments = query.getResultList();
         session.close();
         return assignments;

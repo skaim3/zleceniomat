@@ -16,13 +16,15 @@ public class Assignment {
     private String name;
     private String description;
     private int ownerId;
+    private String availability;
 
 
-    public Assignment(int id, String name, String description, int ownerId) {
+    public Assignment(int id, String name, String description, int ownerId, String availability) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.ownerId = ownerId;
+        this.availability = availability;
     }
 
     public Assignment() {
@@ -59,6 +61,10 @@ public class Assignment {
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
+
+    public String getAvailability() { return availability; }
+
+    public void setAvailability(String availability) { this.availability = availability; }
 
     @Override
     public String toString() {

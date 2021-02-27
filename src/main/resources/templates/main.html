@@ -15,8 +15,8 @@
               <div class="product-box">
                   <div th:text="'Name: ' + ${assignment.name}" class="name-box"></div>
                   <div th:text="'Description: ' + ${assignment.description}" class="description-box"></div>
+                  <div th:text="'Available: ' + ${assignment.availability}" class="description-box"></div>
                   <div class="product-data-box">
-                      <div th:text="'Owner: ' + ${assignment.ownerId}"></div>
                       <a th:if="${role == 'CUSTOMER'}" th:href="@{/edit/{id}(id=${assignment.id})}" class="edit-button"></a>
                   </div>
               </div>
@@ -26,8 +26,8 @@
                   <div th:text="'Name: ' + ${assignment.name}" class="name-box"></div>
                   <div th:text="'Description: ' + ${assignment.description}" class="description-box"></div>
                   <div class="product-data-box">
-                      <div th:text="'Owner: ' + ${assignment.ownerId}"></div>
                       <a th:if="${role == 'CUSTOMER'}" th:href="@{/edit/{id}(id=${assignment.id})}" class="edit-button"></a>
+                      <a th:if="${role == 'CONTRACTOR'}" th:href="@{/addOffer/{id}(id=${assignment.id})}" class="offer-button">Add Offer</a>
                   </div>
               </div>
           </div>

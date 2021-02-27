@@ -8,6 +8,7 @@ public interface IAssignmentDAO {
     Assignment getAssignmentById(int id);
     void updateAssignment(Assignment assignment);
     List<Assignment> getAllAssignments();
+    List<Assignment> getAllAvailableAssignments(String availability);
     boolean addAssignment(Assignment assignment);
     Assignment getAssignmentByName(String name);
     List<Assignment> getOwnedAssignments(int ownerId);

@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Zleceniomat</title>
-    <link rel="stylesheet" href="/commons.css">
     <link rel="stylesheet" href="/edit.css">
+    <link rel="stylesheet" href="/commons.css">
 </head>
 <body>
 <div th:replace="fragments.html :: logo"></div>
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
     <form method="post" id="edit-form">
-        <input id="name" type="text" th:field="*{assignment.name}">
-        <textarea rows="20" cols="100" id="description" th:text="*{assignment.description}" th:field="*{assignment.description}"></textarea>
-        <input type="submit" value="Edit">
+        <p th:if="${info}" th:text="${info}" id="error"></p>
+        <input type="text" placeholder="Assignment Name" th:field="*{offerModel.price}" id="name">
+        <p id="description">Proponowana data wykonania</p>
+        <input type="date" th:field="*{offerModel.date}">
+        <input type="submit" value="Add">
     </form>
 </div>
-
-
 </body>
 </html>

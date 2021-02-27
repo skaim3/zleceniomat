@@ -30,6 +30,7 @@
         <!-- List of XML mapping files -->
         <mapping class="pl.edu.wszib.zleceniomat.model.Assignment"/>
         <mapping class="pl.edu.wszib.zleceniomat.model.User"/>
+        <mapping class="pl.edu.wszib.zleceniomat.model.Offer"/>
 
     </session-factory>
 </hibernate-configuration>

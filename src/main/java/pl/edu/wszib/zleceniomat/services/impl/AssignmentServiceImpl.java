@@ -40,12 +40,15 @@ public class AssignmentServiceImpl implements IAssignmentService {
     public List<Assignment> getAllAssignments(){ return this.assignmentDAO.getAllAssignments(); }
 
     @Override
+    public List<Assignment> getAllAvailableAssignments(String availability){ return this.assignmentDAO.getAllAvailableAssignments(availability); }
+
+    @Override
     public boolean addAssignment(AdditionModel additionModel){
         if(this.assignmentDAO.getAssignmentByName(additionModel.getName()) != null) {
             return false;
         }
 
-        Assignment newAssignment = new Assignment(0, additionModel.getName(), additionModel.getDescription(), this.sessionObject.getLoggedUser().getId());
+        Assignment newAssignment = new Assignment(0, additionModel.getName(), additionModel.getDescription(), this.sessionObject.getLoggedUser().getId(), "YES");
 
         return this.assignmentDAO.addAssignment(newAssignment);
     }

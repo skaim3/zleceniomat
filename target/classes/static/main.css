@@ -11,7 +11,7 @@
     padding: 5px;
 }
 .description-box {
-    font-size: 26px;
+    font-size: 15px;
     padding: 5px;
 }
 .product-data-box {
@@ -29,5 +29,18 @@
     display: inline-block;
     background-size: contain;
     float: right;
-    margin-top: -30px;
+    margin-top: -60px;
+}
+.offer-button{
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    text-decoration: none;
+    color: whitesmoke;
+    float: right;
+    margin-top: -60px;
+}
+.offer-button:hover{
+    color: gold;
+    transition: color 0.5s;
 }

@@ -9,6 +9,7 @@
     <a href="/main" class="menu-button">Assignments</a>
     <a href="/contact" class="menu-button">Contact</a>
     <a th:if="${role == 'CUSTOMER'}" href="/addAssignment" class="menu-button">Add Assignment</a>
+    <a th:if="${role == 'CONTRACTOR'}" href="/offers" class="menu-button">My Offers</a>
     <a href="/logout" class="menu-button" th:if="${isLogged}">Log out</a>
     <a href="/login" class="menu-button" th:if="${!isLogged}">Log in</a>
 </div>

@@ -14,8 +14,6 @@ import pl.edu.wszib.zleceniomat.services.IAssignmentService;
 import pl.edu.wszib.zleceniomat.session.SessionObject;
 
 import javax.annotation.Resource;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Controller
 public class CustomerController {
