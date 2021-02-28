@@ -30,35 +30,36 @@ public class ContractorController {
     IAssignmentService assignmentService;
 
     @RequestMapping(value = "/offers", method = RequestMethod.GET)
-    public String offers(Model model){
+    public String offers(Model model) {
+        if (!this.sessionObject.isLogged()) {
+            return "redirect:/login";
+        }
         model.addAttribute("ownedOffers", this.offerService.getOwnedOffers(this.sessionObject.getLoggedUser()));
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
-        model.addAttribute("owner",this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getId() : null);
-        if(!this.sessionObject.isLogged()) {
-            return "redirect:/login";
-        }
-        else
-            return "main";
+        model.addAttribute("owner", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getId() : null);
+        return "offers";
     }
 
     @RequestMapping(value = "/addOffer/{id}", method = RequestMethod.GET)
-    public String addOfferForm(@PathVariable int id, Model model){
+    public String addOfferForm(@PathVariable int id, Model model) {
         this.sessionObject.setAssignment(assignmentService.getAssignmentById(id));
         model.addAttribute("offerModel", new OfferModel());
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         model.addAttribute("info", this.sessionObject.getInfo());
         return "addOffer";
     }
+
     @RequestMapping(value = "/addOffer/{id}", method = RequestMethod.POST)
-    public String addOffer(@ModelAttribute OfferModel offerModel){
-        if(this.offerService.addOffer(offerModel)) {
+    public String addOffer(@ModelAttribute OfferModel offerModel) {
+        if (this.offerService.addOffer(offerModel)) {
             return "redirect:/main";
         } else {
             this.sessionObject.setInfo("Offer already exists!");
             return "redirect:/addOffer";
         }
     }
+
     @RequestMapping(value = "/editOffer/{id}", method = RequestMethod.GET)
     public String editForm(@PathVariable int id, Model model) {
         if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.CONTRACTOR) {
@@ -68,7 +69,7 @@ public class ContractorController {
         model.addAttribute("offer", offer);
         model.addAttribute("isLogged", this.sessionObject.isLogged());
         model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
-        return "edit";
+        return "editO";
     }
 
     @RequestMapping(value = "/editOffer/{id}", method = RequestMethod.POST)
@@ -78,6 +79,6 @@ public class ContractorController {
         }
         this.offerService.updateOffer(offer);
 
-        return "redirect:/main";
+        return "redirect:/offers";
     }
 }

@@ -9,8 +9,9 @@ import java.util.List;
 
 public interface IOfferService {
     Offer getOfferById(int id);
-    List<Offer> getAllOffersForAssignment(Assignment assignment);
+    List<Offer> getAllOffersForAssignment(int id);
     boolean addOffer(OfferModel offerModel);
     void updateOffer(Offer offer);
     List<Offer> getOwnedOffers(User user);
+    List<Offer> getAllOffers();
 }

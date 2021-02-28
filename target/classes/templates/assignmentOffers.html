@@ -11,15 +11,12 @@
 <div th:replace="fragments.html :: menu"></div>
 <div id="content">
     <th:block>
-        <div th:if="${role == 'CONTRACTOR'}" th:each="offer : ${ownedOffers}">
+        <div th:if="${role == 'CUSTOMER'}" th:each="offer : ${assignmentOffers}">
             <div class="product-box">
-                <div th:text="'Name: ' + ${offer.price}" class="name-box"></div>
-                <div th:text="'Description: ' + ${offer.date}" class="description-box"></div>
-                <div class="product-data-box">
-                    <a th:href="@{/editOffer/{id}(id=${offer.id})}" class="edit-button"></a>
+                <div th:text="'Offered price: ' + ${offer.price}" class="name-box"></div>
+                <div th:text="'Suggested date: ' + ${offer.date}" class="description-box"></div>
                 </div>
             </div>
-        </div>
     </th:block>
 </div>
 </body>

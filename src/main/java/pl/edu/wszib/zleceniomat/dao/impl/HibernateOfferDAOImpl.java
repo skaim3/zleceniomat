@@ -37,10 +37,19 @@ public class HibernateOfferDAOImpl implements IOfferDAO {
     }
 
     @Override
-    public List<Offer> getAllOffersForAssignment(Assignment assignment){
+    public List<Offer> getAllOffers() {
         Session session = this.sessionFactory.openSession();
-        Query<Offer> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Offer WHERE assignment = :assignmentId");
-        query.setParameter("assignmentId", assignment);
+        Query<Offer> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Offer");
+        List<Offer> offers = query.getResultList();
+        session.close();
+        return offers;
+    }
+
+    @Override
+    public List<Offer> getAllOffersForAssignment(int id){
+        Session session = this.sessionFactory.openSession();
+        Query<Offer> query = session.createQuery("FROM pl.edu.wszib.zleceniomat.model.Offer WHERE assignment.id = :assignment");
+        query.setParameter("assignment", id);
         List<Offer> offers = query.getResultList();
         session.close();
         return offers;

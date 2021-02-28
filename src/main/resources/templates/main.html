@@ -17,6 +17,7 @@
                   <div th:text="'Description: ' + ${assignment.description}" class="description-box"></div>
                   <div th:text="'Available: ' + ${assignment.availability}" class="description-box"></div>
                   <div class="product-data-box">
+                      <a th:if="${role == 'CUSTOMER'}" th:href="@{/assignmentOffers/{id}(id=${assignment.id})}" class="edit-button2"></a>
                       <a th:if="${role == 'CUSTOMER'}" th:href="@{/edit/{id}(id=${assignment.id})}" class="edit-button"></a>
                   </div>
               </div>

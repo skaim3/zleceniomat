@@ -11,6 +11,7 @@ import pl.edu.wszib.zleceniomat.model.Assignment;
 import pl.edu.wszib.zleceniomat.model.User;
 import pl.edu.wszib.zleceniomat.model.view.AdditionModel;
 import pl.edu.wszib.zleceniomat.services.IAssignmentService;
+import pl.edu.wszib.zleceniomat.services.IOfferService;
 import pl.edu.wszib.zleceniomat.session.SessionObject;
 
 import javax.annotation.Resource;
@@ -22,6 +23,9 @@ public class CustomerController {
 
     @Resource
     SessionObject sessionObject;
+
+    @Resource
+    IOfferService offerService;
 
 
     @RequestMapping(value = "/addAssignment", method = RequestMethod.GET)
@@ -61,6 +65,17 @@ public class CustomerController {
         this.assignmentService.updateAssignment(assignment);
 
         return "redirect:/main";
+    }
+
+    @RequestMapping(value = "/assignmentOffers/{id}", method = RequestMethod.GET)
+    public String assignmentOffers(@PathVariable int id, Model model){
+        if (!this.sessionObject.isLogged() || this.sessionObject.getLoggedUser().getRole() != User.Role.CUSTOMER) {
+            return "redirect:/login";
+        }
+        model.addAttribute("assignmentOffers", this.offerService.getAllOffersForAssignment(id));
+        model.addAttribute("isLogged", this.sessionObject.isLogged());
+        model.addAttribute("role", this.sessionObject.isLogged() ? this.sessionObject.getLoggedUser().getRole().toString() : null);
+        return "assignmentOffers";
     }
 
 }
