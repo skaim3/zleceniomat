@@ -1,5 +1,7 @@
 package pl.edu.wszib.zleceniomat.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +14,7 @@ public class Offer {
     private User user;
     @ManyToOne(fetch = FetchType.EAGER)
     private Assignment assignment;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(value = TemporalType.DATE)
     private Date date;
     private float price;
