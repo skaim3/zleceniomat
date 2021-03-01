@@ -20,7 +20,9 @@ Aplikacja posiada wbudowany webserwis wypełniający bazę danych przykładowymi
 - Użytkownik Zleceniodawca - Login: Anton, hasło: anton
 - Przykładowe zlecenia należące do użytkownika Anton
 
-**Ważne! Aby Webservice zadziałał musimy skorzystać z aplikacji mogącej przesłać żądanie GET (przykładowo Insomnia)**. W aplikacji insomnia wklejamy i wykonujemy następujące żądanie: http://localhost:8080/fillTheDatabase 
+**Ważne! Aby Webservice zadziałał musimy najpierw uruchomić aplikację a następnie: ** 
+- Skorzystać z aplikacji mogącej przesłać żądanie GET (przykładowo Insomnia). W aplikacji insomnia wklejamy i wykonujemy następujące żądanie: http://localhost:8080/fillTheDatabase 
+- Alternatywnie możemy wpisać żądanie http://localhost:8080/fillTheDatabase bezpośrednio w naszej przeglądarce w polu gdzie wprowadzamy adres strony internetowej (lub nacisnąć na hiperłącze do tego linku, jeżeli program/przeglądarka w którym czytamy ten plik ReadMe nam na to pozwala)
 
 ## Planowane zmiany:
 Aplikacja zawiera kilka niedociągnięć, związanych głównie kosmetyką kodu HTML/CSS (brak oddzielnych arkuszów stylów dla ofert, id/klasy powtarzane pomiędzy podstronami html gdy powinny prezentować inne dane niż wskazuje nazwa). Kontynuując ten projekt dopracowałbym te niedociągnięcia, jak również dodał kilka funkcjonalności (przykładowo możliwość zaakceptowania proponowanej oferty i tym samym zmianę statusu dostępności zlecenia)
