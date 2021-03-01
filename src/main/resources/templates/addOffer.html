@@ -12,8 +12,9 @@
 <div id="content">
     <form method="post" id="edit-form">
         <p th:if="${info}" th:text="${info}" id="error"></p>
+        <p id="price">Proponowana cena</p>
         <input type="text" placeholder="Assignment Name" th:field="*{offerModel.price}" id="name">
-        <p id="description">Proponowana data wykonania</p>
+        <p id="date">Proponowana data wykonania</p>
         <input type="date" th:field="*{offerModel.date}">
         <input type="submit" value="Add">
     </form>

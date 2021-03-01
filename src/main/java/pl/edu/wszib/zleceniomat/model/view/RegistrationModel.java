@@ -17,6 +17,12 @@ public class RegistrationModel {
 
     public RegistrationModel() {
     }
+        //Added late for Webservice purposes, not considered during the creation of the project
+    public RegistrationModel(String login, String pass, String pass2) {
+        this.login = login;
+        this.pass = pass;
+        this.pass2 = pass2;
+    }
 
     public String getLogin() {
         return login;

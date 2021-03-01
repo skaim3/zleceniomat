@@ -25,6 +25,9 @@ public class AssignmentServiceImpl implements IAssignmentService {
     public Assignment getAssignmentById(int id){ return this.assignmentDAO.getAssignmentById(id);}
 
     @Override
+    public Assignment getAssignmentByName(String name) { return this.assignmentDAO.getAssignmentByName(name); }
+
+    @Override
     public List<Assignment> getOwnedAssignments(int ownerId){ return this.assignmentDAO.getOwnedAssignments(ownerId); }
 
     @Override
@@ -49,6 +52,17 @@ public class AssignmentServiceImpl implements IAssignmentService {
         }
 
         Assignment newAssignment = new Assignment(0, additionModel.getName(), additionModel.getDescription(), this.sessionObject.getLoggedUser().getId(), "YES");
+
+        return this.assignmentDAO.addAssignment(newAssignment);
+    }
+
+    @Override
+    public boolean addDBAssignment(AdditionModel additionModel){
+        if(this.assignmentDAO.getAssignmentByName(additionModel.getName()) != null) {
+            return false;
+        }
+
+        Assignment newAssignment = new Assignment(0, additionModel.getName(), additionModel.getDescription(), additionModel.getOwnerId(), "YES");
 
         return this.assignmentDAO.addAssignment(newAssignment);
     }

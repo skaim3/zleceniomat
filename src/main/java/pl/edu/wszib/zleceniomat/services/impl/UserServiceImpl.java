@@ -46,4 +46,27 @@ public class UserServiceImpl implements IUserService {
 
         return this.userDAO.persistUser(newUser);
     }
+
+    @Override
+    public boolean addNewContractor(RegistrationModel registrationModel){
+        if(this.userDAO.getUserByLogin(registrationModel.getLogin()) != null) {
+            return false;
+        }
+
+        User newUser = new User(0, registrationModel.getLogin(), registrationModel.getPass(), User.Role.CONTRACTOR);
+
+        return this.userDAO.persistUser(newUser);
+    }
+
+    @Override
+    public boolean addNewCustomer(RegistrationModel registrationModel){
+        if(this.userDAO.getUserByLogin(registrationModel.getLogin()) != null) {
+            return false;
+        }
+
+        User newUser = new User(0, registrationModel.getLogin(), registrationModel.getPass(), User.Role.CUSTOMER);
+
+        return this.userDAO.persistUser(newUser);
+    }
+
 }
