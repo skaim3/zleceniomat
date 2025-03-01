@@ -21,7 +21,7 @@ Aplikacja posiada wbudowany webserwis wypełniający bazę danych przykładowymi
 - Przykładowe zlecenia należące do użytkownika Anton
 
 **Ważne! Aby Webservice zadziałał musimy najpierw uruchomić aplikację a następnie: ** 
-- Skorzystać z aplikacji mogącej przesłać żądanie GET (przykładowo Insomnia). W aplikacji insomnia wklejamy i wykonujemy następujące żądanie: http://localhost:8080/fillTheDatabase 
+- Skorzystać z aplikacji mogącej przesłać żądanie GET (przykładowo Insomnia). W aplikacji Insomnia wykonujemy następujące żądanie GET: http://localhost:8080/fillTheDatabase 
 - Alternatywnie możemy wpisać żądanie http://localhost:8080/fillTheDatabase bezpośrednio w naszej przeglądarce w polu gdzie wprowadzamy adres strony internetowej (lub nacisnąć na hiperłącze do tego linku, jeżeli program/przeglądarka w którym czytamy ten plik ReadMe nam na to pozwala)
 
 ## Planowane zmiany:
